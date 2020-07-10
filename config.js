@@ -7,7 +7,6 @@ const config = {
     chainId:3,
 //    ipcPath : "/home/cranelv/.wanchain/gwan.ipc",
     rpcPath : "https://demodex.wandevs.org:48545",
-
 };
 
 module.exports = config;
