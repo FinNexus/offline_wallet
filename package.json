@@ -12,6 +12,8 @@
   "author": "cranelv",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
+    "prompt": "^1.0.0",
     "wanchainjs-tx": "^1.5.0",
     "web3": "^1.2.9"
   }

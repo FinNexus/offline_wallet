@@ -1,9 +1,11 @@
 const fs = require('fs');
-var keythereum = require("keythereum");
+var Accounts = require('web3-eth-accounts');
+let accounts = new Accounts();
 module.exports = class Account{
     constructor(fileName){
         try{
             this.fileName = fileName;
+            this.account; 
             let keystoreStr = fs.readFileSync(fileName, "utf8");
             this.keystore = JSON.parse(keystoreStr);
         }catch (e){
@@ -11,23 +13,10 @@ module.exports = class Account{
         }
     }
     getPrivateKey(password){
-        if(!this.privateKey){
-            this.privateKey = this.getPrivateKeyFunc({version:this.keystore.version, crypto:this.keystore.crypto},password);
+        if(!this.account || !this.account.privateKey){
+            this.account = accounts.decrypt(this.keystore,password);
         }
-        return this.privateKey;
-    }
-    getWanPrivateKey(password){
-        return this.getPrivateKeyFunc({version:this.keystore.version, crypto:this.keystore.crypto2},password);
-    }
-    getPrivateKeyFunc(cryptoObj,password){
-        let privateKey;
-        try {
-            privateKey = keythereum.recover(password, cryptoObj);
-        }catch(error){
-            console.log('wrong password!');
-            return null;
-        }
-        return privateKey;
+        return this.account.privateKey;
     }
     getAddress(){
         return '0x'+this.keystore.address;

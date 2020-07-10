@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 let Account = require('./Account.js');
-var keythereum = require("keythereum");
 module.exports = class keystoreDir{
     constructor(keystorePath){
         this.setKeystorePath(keystorePath);
@@ -51,17 +50,6 @@ module.exports = class keystoreDir{
     }
     getAccount(address){
         return this.Accounts[address.toLowerCase()];
-    }
-    CreateAccount(password,callback){
-        var dk = keythereum.create();
-        var keyObject = keythereum.dump(password, dk.privateKey, dk.salt, dk.iv);
-        keythereum.exportToFile(keyObject, this.keystorePath,function (result) {
-            //console.log(result);
-            if(callback){
-                callback(keyObject.address,result);
-            }
-        });
-        return '0x' + keyObject.address;
     }
     changePassword(address,oldPassword,newPassword){
         var account = this.getAccount(address);

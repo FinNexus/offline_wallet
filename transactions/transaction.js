@@ -15,13 +15,13 @@ class IRawTransaction
          let Key = "0x"+privateKey.toString("hex");
          web3.eth.accounts.signTransaction(this.trans,Key,callback);
     }
-    signAndHash()
+    signAndHash(privateKey)
     {
         const tx = new this.txClass(this.trans);
         tx.sign(privateKey);
         var hash = tx.hash(true);
         const serializedTx = tx.serialize();
-        return ["0x"+serializedTx.toString('hex'),hash];
+        return ["0x"+serializedTx.toString('hex'), "0x"+hash.toString("hex")];
     }
 
     signFromKeystore(password)

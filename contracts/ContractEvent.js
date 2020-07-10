@@ -15,6 +15,7 @@ module.exports = class ContractEvent extends ContractFunc {
             }
         }
     }
+
     parseContractMethodPara(paraData,web3) {
         var dict = {};
         let paras = web3.eth.abi.decodeParameters(this.input.format,paraData);

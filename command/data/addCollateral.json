@@ -1,0 +1,9 @@
+
+{
+  "from":"0xe732e883d03e230b7a5c2891c10222fe0a1fb2cb",
+  "recipient":"0xc864f6c8f8a75c4885f8208964a85a7f517bdecb",
+  "data":[
+    ["0xBC4F23DBb07cB8624dFeEF1cD48C38EE0fc0BceA","WAN",4,1],
+    ["0x6c795AB37Ed6d70001526F3eC9be140e6CE4b2fc","FNX",4,1]
+  ]
+}

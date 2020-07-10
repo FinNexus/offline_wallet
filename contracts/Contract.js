@@ -83,6 +83,14 @@ module.exports = class Contract {
             }
         }
     }
+    async decodeLog(data,topics,web3){
+        let name = this.getEventName(topics[0],web3);
+        if (name && name.length > 0){
+            let log = await web3.eth.abi.decodeLog(this.getFunctionItem(name).inputs,data,topics.slice(1));
+            log.name = name;
+            return log;
+        }
+    }
     getConstructor(){
         for(var i = 0;i<this.Abi.length;++i){
             let item = this.Abi[i];

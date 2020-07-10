@@ -1,6 +1,6 @@
 {
   "CompoundOracle": {
-    "address": "0x2FAfA7DAdCAC47Be341B6420E1088d0670470957",
+    "address": "0x6b07e506C6D82CA93B2D2Eb9C69Cf0EfA7E41b89",
     "fileName": "../contracts/CompoundOracle.json"
   },
   "IERC20": {
@@ -8,15 +8,15 @@
     "fileName": "../contracts/IERC20.json"
   },
   "MatchMakingTrading": {
-    "address": "0x7962Dd9D8af81Ec0c2f24efCAFFd7A47D05a212F",
+    "address": "0x28B020722347470c1a92b29E5519A435d6281Ee3",
     "fileName": "../contracts/MatchMakingTrading.json"
   },
   "OptionsFormulas": {
-    "address": "0xacd2ce51304428779E2306C38F7445E5be150F7f",
+    "address": "0x93cC7A85E70eE0528d07148bc5B27c03AE014977",
     "fileName": "../contracts/OptionsFormulas.json"
   },
   "OptionsManager": {
-    "address": "0xc01B13339A1206919C1526a9b3bF71b2f7d449Bb",
+    "address": "0xBf2c33E1B1AC48423695b6a3c875ff9193732d5F",
     "fileName": "../contracts/OptionsManager.json"
   }
 }
