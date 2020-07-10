@@ -1,0 +1,18 @@
+{
+  "name": "offline_wallet",
+  "version": "1.0.0",
+  "description": "offline wallet for finnexus",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "finnexus"
+  ],
+  "author": "cranelv",
+  "license": "ISC",
+  "dependencies": {
+    "wanchainjs-tx": "^1.5.0",
+    "web3": "^1.2.9"
+  }
+}
