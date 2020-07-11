@@ -40,6 +40,7 @@ class baseTransaction {
             }
         }else{
             console.error(result);
+            process.exit(1);
         }
         return logs;
     }
@@ -78,7 +79,7 @@ class CreateOptions extends baseTransaction{
             console.error("underLying "+underlying+" is not found");
         } 
         try {
-            let data = this.func.getData(this.web3,optionName,colarg,under,strikePrice,Expiration,optType);
+            let data = this.func.getData(this.web3,optionName,colarg,under,strikePrice*1e8,Expiration,optType);
             let tx = new this.Trans(this.createTxObj(0,data));
             return [tx,optionName];
         } catch (error) {
