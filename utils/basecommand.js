@@ -30,6 +30,7 @@ class baseCommand {
             
         }
         this.SaveJSON(InputFile,this.accounts);
+        console.log("Account Nonces are saved in " +InputFile);
     }
     createTransaction(tx,obj){
         try {
@@ -125,6 +126,7 @@ class AddCollateralCommand extends baseCommand{
         for (var i = 0;i<collateral.length;i++) {
             let logs = await this.CollateralTx.sendSignedTransaction(collateral[i].data);
         }
+        console.log("Successfully Finish!");
     }
 } 
 exports.CreateOptionsCommand = CreateOptionsCommand;
