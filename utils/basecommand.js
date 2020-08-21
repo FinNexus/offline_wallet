@@ -129,5 +129,6 @@ class AddCollateralCommand extends baseCommand{
         console.log("Successfully Finish!");
     }
 } 
+exports.baseCommand = baseCommand;
 exports.CreateOptionsCommand = CreateOptionsCommand;
 exports.AddCollateralCommand = AddCollateralCommand;

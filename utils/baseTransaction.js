@@ -13,6 +13,34 @@ class baseTransaction {
         this.web3 = web3;
         this.param = param;
         this.from = from;
+        if (platForm == "WAN"){
+            this.Trans = WanTransaction;
+        }else{
+            this.Trans = EthTransaction;
+        }
+        if (contractName){
+            this.setContractName(contractName);
+        }
+    }
+    createContract(contractName,address){
+        let abi = require("../ABI/"+contractName+".json");
+        return new this.web3.eth.Contract(abi,address);
+    }
+    createContractTx(to,value,data){
+        let nonce = this.accounts[this.from];
+        this.accounts[this.from]++;
+        let gasPrice = new GWeiAmount(config.gasPrice);
+        return {
+            to:to,
+            value:value,
+            data:data,
+            gas:config.gas,
+            gasPrice:gasPrice.getWei(),
+            nonce:nonce,
+            chainId:config.chainId
+        }
+    }
+    setContractName(contractName){
         let contractMap = contractInfo;
         if (contractMap[contractName]){
             let abi = require("../ABI/"+contractName+".json");
@@ -23,11 +51,6 @@ class baseTransaction {
             }
         }else{
             console.error("Contract " + contractName + " is not exist!");
-        }
-        if (platForm == "WAN"){
-            this.Trans = WanTransaction;
-        }else{
-            this.Trans = EthTransaction;
         }
     }
     async sendSignedTransaction(data){
@@ -50,6 +73,19 @@ class baseTransaction {
         let gasPrice = new GWeiAmount(config.gasPrice);
         return {
             to:this.contract.contractAddr,
+            value:value,
+            data:data,
+            gas:config.gas,
+            gasPrice:gasPrice.getWei(),
+            nonce:nonce,
+            chainId:config.chainId
+        }
+    }
+    createDeployTxObj(value,data){
+        let nonce = this.accounts[this.from];
+        this.accounts[this.from]++;
+        let gasPrice = new GWeiAmount(config.gasPrice);
+        return {
             value:value,
             data:data,
             gas:config.gas,
@@ -152,6 +188,7 @@ class Erc20Approve extends baseTransaction{
         return [tx,"approve",tokenAddress,spender,amount];
     }
 }
+exports.baseTransaction = baseTransaction;
 exports.CreateOptions = CreateOptions;
 exports.Erc20Approve = Erc20Approve;
 exports.addCollateral = addCollateral;

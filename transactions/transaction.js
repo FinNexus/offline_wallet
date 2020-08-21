@@ -17,7 +17,7 @@ class IRawTransaction
     }
     signAndHash(privateKey)
     {
-        const tx = new this.txClass(this.trans);
+        const tx = this.createTx();
         tx.sign(privateKey);
         var hash = tx.hash(true);
         const serializedTx = tx.serialize();

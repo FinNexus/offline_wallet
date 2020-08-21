@@ -7,6 +7,10 @@
     "address": "0x0000000000000000000000000000000000000000",
     "fileName": "../contracts/IERC20.json"
   },
+  "TokenLiquidity": {
+    "address": "0x0000000000000000000000000000000000000000",
+    "fileName": "../contracts/IERC20.json"
+  },
   "MatchMakingTrading": {
     "address": "0x5b0E141CaA18c190ABc20B9faFe596bbA5cC8226",
     "fileName": "../contracts/MatchMakingTrading.json"

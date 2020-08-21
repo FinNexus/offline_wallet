@@ -152,10 +152,8 @@ module.exports = class Contract {
         return input;
     }
 
-    deployContractData(web3,keyFile,contract,...args) {
-        let compiled = this.compileSol(keyFile);
-        let  name = ':' + contract;
-        let Contract = new web3.eth.Contract(JSON.parse(compiled.contracts[name].interface));
-        return '0x' + Contract.deploy({data:compiled.contracts[name].bytecode,arguments:args}).encodeABI();
+    deployContractData(web3,bytecode,args) {
+        let Contract = new web3.eth.Contract(this.Abi);
+        return Contract.deploy({data:bytecode,arguments:args}).encodeABI();
     }
 }

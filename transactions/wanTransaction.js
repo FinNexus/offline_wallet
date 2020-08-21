@@ -6,7 +6,10 @@ class WanTransaction extends IRawTransaction
     constructor(trans)
     {
         trans.Txtype = '0x01';
-        super(trans,WanTx);
+        super(trans);
+    }
+    createTx(){
+        return new WanTx(this.trans);
     }
 };
 exports.WanTransaction = WanTransaction;

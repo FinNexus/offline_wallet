@@ -5,7 +5,10 @@ class EthTransaction extends IRawTransaction
 {
     constructor(trans)
     {
-        super(trans,EthTx);
+        super(trans);
+    }
+    createTx(){
+        return new EthTx(this.trans,{chain:this.trans.chainId});
     }
 };
 exports.EthTransaction = EthTransaction;
