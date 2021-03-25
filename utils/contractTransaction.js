@@ -5,18 +5,24 @@ class contractTransaction extends baseTransaction{
         super(platForm,accounts,web3,param,from);
     }
     createTransaction(args){
-        let funcName = args[3];
-        if (inputFormats[funcName]) {
-            args = inputFormats[funcName](args);  
+        if (args.length == 2) {
+            let tx = new this.Trans(this.createContractTx(args[0],args[1]));
+            return [tx,args[0],args[1]];
+        }else{
+            let funcName = args[3];
+            if (inputFormats[funcName]) {
+                args = inputFormats[funcName](args);  
+            }
+            let tokenAddress = args[0];
+            let value = args[1];
+            let contractName = args[2];
+            args = args.slice(4)
+            let Contract = this.createContract(contractName,tokenAddress);
+            let data = Contract.methods[funcName](...args).encodeABI();
+            let tx = new this.Trans(this.createContractTx(tokenAddress,value,data));
+            return [tx,tokenAddress,value,contractName,funcName];
         }
-        let tokenAddress = args[0];
-        let value = args[1];
-        let contractName = args[2];
-        args = args.slice(4)
-        let Contract = this.createContract(contractName,tokenAddress);
-        let data = Contract.methods[funcName](...args).encodeABI();
-        let tx = new this.Trans(this.createContractTx(tokenAddress,value,data));
-        return [tx,tokenAddress,value,contractName,funcName];
+
     }
     async sendSignedTransaction(data){
         let result = await this.web3.eth.sendSignedTransaction(data);
